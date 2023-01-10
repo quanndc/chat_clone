@@ -1,0 +1,24 @@
+<form (submit)="accessForGroup()">
+    <input placeholder="Group Id" [(ngModel)]="groupId" [ngModelOptions]="{ standalone: true }" />
+    <input placeholder="Tên" [(ngModel)]="name" [ngModelOptions]="{ standalone: true }" />
+    <button type="submit">Access</button>
+</form>
+<form (submit)="send()">
+    <input placeholder="Vui lòng nhập tin nhắn" [(ngModel)]="messageData" [ngModelOptions]="{ standalone: true }" />
+    <button type="submit">Send</button>
+</form>
+
+<div class="container">
+    <div class='chatbox' ng-controller="MessageCtrl as chatMessage">
+        <div class="chatbox__messages" ng-repeat="message in messages">
+            <div class="chatbox__messages__user-message" *ngFor="let message of messages"
+                [class]="message.from == name ? 'owner' : 'friend'">
+                <div class="chatbox__messages__user-message--ind-message">
+                    <p class="name">{{message.from}}</p>
+                    <br />
+                    <p class="message">{{message.content}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
